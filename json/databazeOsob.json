@@ -1,0 +1,29 @@
+{
+  "osoby": [
+    {
+      "name": "Filip Růžička",
+      "state": "CZE",
+      "img": "images/male.png"
+    },
+    {
+      "name": "Eliška Slípková",
+      "state": "CZE",
+      "img": "images/female.png"
+    },
+    {
+      "name": "Vladimir Putin",
+      "state": "RUS",
+      "img": "images/male.png"
+    },
+    {
+      "name": "Donald Trump",
+      "state": "USA",
+      "img": "images/male.png"
+    },
+    {
+      "name": "Eliška Goblová",
+      "state": "CZE",
+      "img": "images/female.png"
+    }
+  ]
+}

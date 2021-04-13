@@ -1,0 +1,150 @@
+BoxLayout:
+    orientation:'vertical'
+
+    MDToolbar:
+        title: 'BMI kalkulačka'
+        md_bg_color: .4, .3, .8, 1
+        specific_text_color: 1, 1, 1, 1
+
+    MDBottomNavigation:
+        id: navigation
+        panel_color: .4, .3, .8, 1
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'BMI kalkulačka'
+            icon: 'calculator'
+
+            BMIScreen:
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Seznam osob'
+            icon: 'transcribe'
+
+            FormScreen:
+
+
+<BMIScreen>:
+    name: 'bmiscreen'
+
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: (0.1568, 0.1568, 0.1568, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDLabel:
+            text: 'Výsledek:'
+            size_hint: (.5, .1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+            halign: 'center'
+            font_style: 'H5'
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        MDLabel:
+            id: result
+            text: ''
+            size_hint: (.5, .1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            halign: 'center'
+            font_style: 'H5'
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_x: 0.3
+            size_hint_y: 0.08
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            height: self.minimum_height
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.5, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            MDLabel:
+                text: 'Váha'
+                halign: 'center'
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.8
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            MDTextField:
+                id: vaha
+                mode: 'fill'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_x: 0.3
+            size_hint_y: 0.08
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            height: self.minimum_height
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.5, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            MDLabel:
+                text: 'Výška'
+                halign: 'center'
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.8
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            MDTextField:
+                id: vyska
+                mode: 'fill'
+
+
+        MDRaisedButton:
+            text: "Vypočítej"
+            md_bg_color: 0.2, 0.5, 1, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            font_size: 30
+            on_press:
+                root.ids.result.text = str(round(int(root.ids.vaha.text) / (int(root.ids.vyska.text) / 100) ** 2, 2))
+
+<FormScreen>
+    name:'formscreen'
+
+<Content>:
+    orientation: 'vertical'
+    size_hint_x: 1
+    size_hint_y: None
+    height: "100dp"
+
+    MDTextField:
+        id: person_name
+        text: 'jmeno'
+        pos_hint: {'center_x': .5, 'center_y': .9}
+
+    MDDropDownItem:
+        id: state_item
+        pos_hint: {'center_x': .5, 'center_y': .7}
+        size_hint_x: 1
+        text: 'Stát'
+        on_release: self.parent.menu.open()
